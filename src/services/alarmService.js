@@ -41,8 +41,8 @@ const show = async (alarmId) => {
       },
     });
     return res.json();
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -56,8 +56,8 @@ const deleteAlarm = async (alarmId) => {
       },
     });
     return res.json();
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -74,8 +74,8 @@ const updateAlarm = async (alarmId, alarmFormData) => {
       body: JSON.stringify(alarmFormData),
     });
     return res.json();
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log(error);
   }
 };
 

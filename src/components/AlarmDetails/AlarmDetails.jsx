@@ -19,7 +19,7 @@ const AlarmDetails = (props) => {
         const alarmData = await alarmService.show(alarmId);
         setAlarm(alarmData);
       } catch (err) {
-        console.error("Error fetching alarm:", err);
+        console.error("Error fetching alarm:", error);
       }
     };
     fetchAlarm();
@@ -34,7 +34,9 @@ const AlarmDetails = (props) => {
     if (alarm?.tone?.fileUrl) {
       const audio = new Audio(`${BASE_URL}${alarm.tone.fileUrl}`);
       audioRef.current = audio;
-      audio.play().catch((err) => console.error("Error playing tone: ", err));
+      audio
+        .play()
+        .catch((error) => console.error("Error playing tone: ", error));
     }
   };
 
