@@ -1,0 +1,70 @@
+@font-face {
+  font-family: DS-DIGII;
+  src: url("/fonts/DS-DIGII.TTF");
+}
+
+.currentTime {
+  text-align: center;
+}
+
+.elementContainer {
+  display: flex;
+  margin: auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid black;
+  padding-bottom: 10px;
+  background-color: rgb(255, 255, 255);
+  color: black;
+  border-radius: 5px;
+  opacity: 0.8;
+  width: 400px;
+}
+
+.clockContainer {
+  display: flex;
+  flex-direction: column;
+  font-family: DS-DIGII;
+  font-size: 64px;
+  font-weight: 500;
+}
+
+.addAlarmLink {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  margin: 10px;
+}
+
+.activeAlarm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.alarmName {
+  font-size: 24px;
+}
+
+.alarmInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+.alarmInfo p {
+  font-size: 2rem;
+}
+
+.snoozeNotice {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  color: #dd7e5e;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+}

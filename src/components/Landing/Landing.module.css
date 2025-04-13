@@ -1,0 +1,35 @@
+.landing {
+display: flex;
+flex-direction: column;
+align-items: center;
+text-align: center;
+justify-content: center;
+height: 100vh;
+padding: 2rem;
+}
+
+.landing h1{
+     font-size: 24;
+}
+
+.landing p{
+    display: flex;
+    color: darkslategray;
+   
+
+    align-items: center;
+}
+
+.landingBlurb{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgb(181, 149, 120);
+    opacity: .8;
+    border-radius: 4px;
+    font-weight: 700;
+    align-items: center;
+    margin: auto;
+    width: 50%;
+    background-color: rgb(254, 249, 243);
+    padding: 15px;
+}

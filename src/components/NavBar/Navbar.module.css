@@ -1,0 +1,45 @@
+.container {
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  position: fixed;
+  padding: 1rem 2rem;
+  padding-left: 0;
+  align-items: center;
+  background-color: #ffefdb;
+  border-bottom: 1px solid rgb(200, 200, 200);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.container ul {
+  margin: 0;
+  width: 100%;
+  display: flex;
+  list-style: none;
+  font-weight: bold;
+  align-items: center;
+  padding-left: 0;
+}
+
+.container li {
+  margin-left: 1rem;
+}
+
+.navContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.left {
+  flex: 1;
+  text-align: left;
+}
+
+.right {
+  display: flex;
+  justify-content: flex-end;
+}

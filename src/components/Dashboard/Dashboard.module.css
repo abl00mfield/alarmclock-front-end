@@ -1,0 +1,10 @@
+.introBlurb{
+    width: 500px;
+    margin: 5rem auto;
+    padding: 2rem;
+    padding-bottom: 30px;
+    background-color: #D9CAC7;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.824);
+    font-family: 'Arial', sans-serif;
+}
