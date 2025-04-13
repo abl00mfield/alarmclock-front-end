@@ -6,7 +6,6 @@ import styles from "./AlarmList.module.css";
 const AlarmList = ({ alarms }) => {
   return (
     <main>
-      <Clock alarms={alarms} />
       <div className={styles.alarmContainer}>
         {alarms.map((alarm) => (
           <Link key={alarm._id} to={`/alarms/${alarm._id}`}>

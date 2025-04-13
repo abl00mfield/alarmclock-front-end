@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Routes, Route, useNavigate } from "react-router";
 
 import NavBar from "./components/NavBar/NavBar";
+import Clock from "./components/Clock/Clock";
 import SignUpForm from "./components/SignUpForm/SignUpForm";
 import SignInForm from "./components/SignInForm/SignInForm";
 import Landing from "./components/Landing/Landing";
@@ -57,6 +58,7 @@ function App() {
   return (
     <>
       <NavBar />
+      <Clock alarms={alarms} />
       <Routes>
         <Route
           path="/"

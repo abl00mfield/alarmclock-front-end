@@ -52,7 +52,6 @@ const AlarmDetails = (props) => {
 
   return (
     <main className={styles.wrapper}>
-      <Clock alarms={props.alarms} />
       <div className={styles.card}>
         <h1 className={styles.title}>{formatTimeTo12Hour(alarm.time)}</h1>
         <h2 className={styles.info}>Name: {alarm.name}</h2>

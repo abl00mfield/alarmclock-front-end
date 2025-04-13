@@ -35,6 +35,10 @@ const AlarmForm = (props) => {
       audioRef.current.currentTime = 0;
       audioRef.current = null;
     }
+    const updatedFormData = {
+      ...formData,
+      time: formData.time.length === 5 ? `${formData.time}:00` : formData.time,
+    };
 
     if (alarmId) {
       props.handleUpdateAlarm(alarmId, formData);
@@ -63,7 +67,6 @@ const AlarmForm = (props) => {
   return (
     <main className={styles.pageWrapper}>
       <div className={styles.container}>
-        <Clock alarms={props.alarms} />
         <h1>{alarmId ? "Edit Alarm" : "New Alarm"}</h1>
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.field}>
@@ -151,7 +154,7 @@ const AlarmForm = (props) => {
             {alarmId ? "Edit Alarm" : "Add Alarm"}
           </button>
         </form>
-        </div>
+      </div>
     </main>
   );
 };

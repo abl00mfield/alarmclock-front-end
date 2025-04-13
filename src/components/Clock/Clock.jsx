@@ -1,43 +1,46 @@
 import { useAlarmLogic } from "../hooks/useAlarmLogic";
+import { useContext } from "react";
 import CurrentTimeDisplay from "../CurrentTimeDisplay/CurrentTimeDisplay.jsx";
 import ActiveAlarmPanel from "../ActiveAlarmPanel/ActiveAlarmPanel.jsx";
 import SnoozeNoticeList from "../SnoozeNoticeList/SnoozeNoticeList.jsx";
-import { Link } from "react-router";
+import AddAlarmLink from "../AddAlarmLink/AddAlarmLink.jsx";
+import { UserContext } from "../../contexts/UserContext.jsx";
 import styles from "./Clock.module.css";
 
 const Clock = ({ alarms }) => {
+  const { user } = useContext(UserContext);
   const {
-    time,
-    alarmActive,
+    currentTime,
+    activeAlarm,
     stopAlarm,
     snoozeAlarm,
     cancelSnooze,
-    SNOOZE_AMT,
     snoozedUntilMap,
+    SNOOZE_AMT,
   } = useAlarmLogic(alarms);
 
   return (
     <div className={styles.elementContainer}>
       <h2 className={styles.currentTime}>Current Time</h2>
-      <CurrentTimeDisplay time={time} />
+      <CurrentTimeDisplay time={currentTime} />
 
-      {alarmActive && (
+      {activeAlarm && (
         <ActiveAlarmPanel
-          alarm={alarmActive}
-          onStop={stopAlarm}
-          onSnooze={snoozeAlarm}
+          alarm={activeAlarm}
+          handleStop={stopAlarm}
+          handleSnooze={snoozeAlarm}
           snoozeMinutes={SNOOZE_AMT}
         />
       )}
 
       <SnoozeNoticeList
         snoozedUntilMap={snoozedUntilMap}
-        onCancelSnooze={cancelSnooze}
+        handleCancel={cancelSnooze}
       />
 
-      <Link className={styles.addAlarmLink} to="/alarms/new">
-        AddAlarm
-      </Link>
+      {user && <AddAlarmLink />}
     </div>
   );
 };
+
+export default Clock;
