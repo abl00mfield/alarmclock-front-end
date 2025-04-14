@@ -14,7 +14,7 @@ const SnoozeNoticeList = ({ snoozedUntilMap, handleCancel }) => {
             })}
           </p>
           <button
-            className="snoozeAlarmButton"
+            className={styles.cancelButton}
             onClick={() => handleCancel(id)}
           >
             Cancel Snooze
