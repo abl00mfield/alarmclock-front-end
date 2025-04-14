@@ -8,26 +8,12 @@
 }
 
 .elementContainer {
+  padding-top: 60px;
   display: flex;
-  margin: auto;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 2px solid black;
-  padding-bottom: 10px;
-  background-color: rgb(255, 255, 255);
-  color: black;
-  border-radius: 5px;
-  opacity: 0.8;
-  width: 400px;
-}
-
-.clockContainer {
-  display: flex;
-  flex-direction: column;
-  font-family: DS-DIGII;
-  font-size: 64px;
-  font-weight: 500;
+  width: 100%;
 }
 
 .addAlarmLink {

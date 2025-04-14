@@ -1,4 +1,4 @@
-import { useAlarmLogic } from "../hooks/useAlarmLogic";
+import { useAlarmLogic } from "../../hooks/useAlarmLogic.js";
 import { useContext } from "react";
 import CurrentTimeDisplay from "../CurrentTimeDisplay/CurrentTimeDisplay.jsx";
 import ActiveAlarmPanel from "../ActiveAlarmPanel/ActiveAlarmPanel.jsx";
@@ -21,8 +21,7 @@ const Clock = ({ alarms }) => {
 
   return (
     <div className={styles.elementContainer}>
-      <h2 className={styles.currentTime}>Current Time</h2>
-      <CurrentTimeDisplay time={currentTime} />
+      <CurrentTimeDisplay currentTime={currentTime} />
 
       {activeAlarm && (
         <ActiveAlarmPanel

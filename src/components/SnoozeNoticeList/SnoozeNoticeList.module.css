@@ -1,0 +1,23 @@
+.snoozeNotice {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  color: #dd7e5e;
+  font-weight: bold;
+  text-align: center;
+}
+
+.cancelButton {
+  margin-top: 0.5rem;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  background-color: #fce4e1;
+  border: 1px solid #cc5e49;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #333;
+  transition: background-color 0.2s;
+}
+
+.cancelButton:hover {
+  background-color: #ffd2c9;
+}

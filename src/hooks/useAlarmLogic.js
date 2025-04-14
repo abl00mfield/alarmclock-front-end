@@ -3,24 +3,28 @@ const SNOOZE_AMT = 1;
 const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}`;
 
 export function useAlarmLogic(alarms) {
-  const [currentTime, setCurrentTime] = useState(newDate());
+  const [currentTime, setCurrentTime] = useState(new Date());
   const [activeAlarm, setActiveAlarm] = useState(null);
   const [snoozedUntilMap, setSnoozedUntilMap] = useState(new Map());
   const [ringingAlarm, setRingingAlarm] = useState(new Set());
   const audioRef = useRef(null);
   const alarmTimeoutRef = useRef(null);
 
-  const playAlarmSound = (alarm) => {
+  const playAlarmSound = async (alarm) => {
     if (!alarm.tone?.fileUrl) return;
 
     const audio = new Audio(`${BASE_URL}${alarm.tone.fileUrl}`);
     audio.loop = true;
-    audio.play();
-    audioRef.current = audio;
+    try {
+      await audio.play();
+      audioRef.current = audio;
 
-    alarmTimeoutRef.current = setTimeout(() => {
-      stopAlarm();
-    }, 5 * 60 * 1000); // Auto stop after 5 minutes
+      alarmTimeoutRef.current = setTimeout(() => {
+        stopAlarm();
+      }, 5 * 60 * 1000); // Auto stop after 5 minutes
+    } catch (error) {
+      console.error("Error playing alarm sound: ", error);
+    }
   };
 
   const stopAlarm = () => {
@@ -34,15 +38,23 @@ export function useAlarmLogic(alarms) {
       clearTimeout(alarmTimeoutRef.current);
       alarmTimeoutRef.current = null;
     }
+
+    if (activeAlarm?._id) {
+      setRingingAlarm((prev) => {
+        const updated = new Set(prev);
+        updated.delete(activeAlarm._id);
+        return updated;
+      });
+    }
+
     setActiveAlarm(null);
-    setRingingAlarm(new Set());
   };
 
   const snoozeAlarm = () => {
     const snoozeDelay = SNOOZE_AMT * 60 * 1000;
-    const alarmToSnooze = alarmActive;
+    const alarmToSnooze = activeAlarm;
 
-    stopAlarm();
+    stopAlarm(); //don't clear out snoozeMap when we are just snoozing an alarm
 
     const snoozeUntil = new Date(Date.now() + snoozeDelay);
     setSnoozedUntilMap((prev) => {
@@ -66,21 +78,26 @@ export function useAlarmLogic(alarms) {
       setCurrentTime(now);
 
       const currentStr = now.toTimeString().split(" ")[0].slice(0, 8);
-      alarms.forEach((alarm) => {
+
+      alarms?.forEach((alarm) => {
         const isRinging = ringingAlarm.has(alarm._id);
         const snoozedUntil = snoozedUntilMap.get(alarm._id);
         const isSnoozed = snoozedUntil && snoozedUntil > now;
+        const isSnoozeMatch =
+          snoozedUntil &&
+          snoozedUntil.toTimeString().split(" ")[0].slice(0, 8) === currentStr;
 
         if (
           alarm.active &&
-          alarm.time === currentStr &&
           !isRinging &&
+          (alarm.time === currentStr || isSnoozeMatch) &&
           !isSnoozed
         ) {
           setActiveAlarm(alarm);
           setRingingAlarm((prev) => new Set(prev).add(alarm._id));
           playAlarmSound(alarm);
         }
+        if (isSnoozeMatch) cancelSnooze(alarm._id);
       });
     }, 1000);
 

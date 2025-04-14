@@ -41,9 +41,9 @@ const AlarmForm = (props) => {
     };
 
     if (alarmId) {
-      props.handleUpdateAlarm(alarmId, formData);
+      props.handleUpdateAlarm(alarmId, updatedFormData);
     } else {
-      props.handleAddAlarm(formData);
+      props.handleAddAlarm(updatedFormData);
     }
   };
 

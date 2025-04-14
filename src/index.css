@@ -10,9 +10,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-main {
-  padding-top: 60px;
-}
 a {
   font-weight: 500;
   color: #4a280f;
@@ -28,7 +25,7 @@ li {
 body {
   background-image: url("/images/neutral-sun-bg.jpg");
   margin: 0;
-  margin-top: 20px;
+  /* margin-top: 20px; */
   background-size: cover;
   background-position: center;
   min-height: 100vh;
@@ -40,17 +37,6 @@ body.light-theme {
 
 body.dark-theme {
   background-image: url("/images/dark-sun-bg.jpg");
-}
-
-main {
-  padding-top: 60px;
-  padding-bottom: 40px;
-}
-
-.themeBtn {
-  position: absolute;
-  right: 15px;
-  margin-bottom: 20px;
 }
 
 h1 {
