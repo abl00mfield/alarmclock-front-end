@@ -1,0 +1,28 @@
+.activeAlarm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* width: 50%; */
+  min-width: 35%;
+  border: 1px black solid;
+  background-color: antiquewhite;
+  opacity: 0.8;
+  margin: 15px;
+}
+
+.alarmInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.alarmName {
+  font-size: 1.3em;
+}
+
+.stopButton,
+.snoozeButton {
+  margin: 10px;
+}

@@ -67,7 +67,7 @@ const AlarmForm = (props) => {
   return (
     <main className={styles.pageWrapper}>
       <div className={styles.container}>
-        <h1>{alarmId ? "Edit Alarm" : "New Alarm"}</h1>
+        <h1 className={styles.title}>{alarmId ? "Edit Alarm" : "New Alarm"}</h1>
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.field}>
             <label htmlFor="name-input">Name</label>

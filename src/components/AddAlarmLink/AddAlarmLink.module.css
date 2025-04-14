@@ -1,0 +1,13 @@
+.addAlarm {
+  background-color: #e76435fe;
+  margin: 10px;
+  border-radius: 5px;
+  padding: 5px;
+  font-weight: bold;
+  font-size: 1.6rem;
+}
+
+.addAlarm:hover {
+  background-color: #e4aa95fe;
+  color: black;
+}

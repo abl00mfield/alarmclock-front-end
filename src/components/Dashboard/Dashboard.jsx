@@ -3,10 +3,10 @@ import styles from "./Dashboard.module.css";
 
 const Dashboard = ({ alarms }) => {
   return (
-    <main>
+    <main className={styles.pageWrapper}>
       <div className={styles.introBlurb}>
-        <h1>Alarm Mate</h1>
-        <p>
+        <h1 className={styles.title}>Alarm Mate</h1>
+        <p className={styles.p}>
           Do you have trouble keeping track of time? If so, you're not alone.
           Keep track of time with Alarm Mate by setting custom alarms. Need an
           alarm to remind you to take the chicken out of the freezer before your

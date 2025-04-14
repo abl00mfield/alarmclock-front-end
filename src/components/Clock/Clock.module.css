@@ -1,14 +1,14 @@
-@font-face {
+/* @font-face {
   font-family: DS-DIGII;
   src: url("/fonts/DS-DIGII.TTF");
-}
+} */
 
-.currentTime {
+/* .currentTime {
   text-align: center;
-}
+} */
 
 .elementContainer {
-  padding-top: 60px;
+  padding-top: 70px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,23 +16,23 @@
   width: 100%;
 }
 
-.addAlarmLink {
+/* .addAlarmLink {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   margin: 10px;
-}
+} */
 
-.activeAlarm {
+/* .activeAlarm {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
+} */
 
-.alarmName {
+/* .alarmName {
   font-size: 24px;
-}
+} */
 
-.alarmInfo {
+/* .alarmInfo {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,4 +53,4 @@
   flex-direction: column;
   align-items: center;
   margin: auto;
-}
+} */

@@ -1,10 +1,28 @@
-.introBlurb{
-    width: 500px;
-    margin: 5rem auto;
-    padding: 2rem;
-    padding-bottom: 30px;
-    background-color: #D9CAC7;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.824);
-    font-family: 'Arial', sans-serif;
+.pageWrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+}
+
+.introBlurb {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  min-width: 300px;
+  padding: 2rem;
+  padding-bottom: 30px;
+  background-color: #d9cac7;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.824);
+  font-family: "Arial", sans-serif;
+}
+
+.title {
+  font-size: 3em;
+  margin: 0;
 }

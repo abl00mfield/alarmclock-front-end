@@ -5,11 +5,15 @@ import styles from "./AlarmList.module.css";
 
 const AlarmList = ({ alarms }) => {
   return (
-    <main>
+    <main className={styles.pageWrapper}>
       <div className={styles.alarmContainer}>
         {alarms.map((alarm) => (
-          <Link key={alarm._id} to={`/alarms/${alarm._id}`}>
-            <div className={styles.singleAlarm}>
+          <Link
+            className={styles.singleAlarm}
+            key={alarm._id}
+            to={`/alarms/${alarm._id}`}
+          >
+            <div className={styles.alarmText}>
               <h2>{formatTimeTo12Hour(alarm.time)}</h2>
               <p>Name: {alarm.name}</p>
 
