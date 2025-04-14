@@ -21,8 +21,8 @@
   opacity: 0.95;
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .clockContainer {
-    /* font-size: 10vw; */
+    font-size: 10vw;
   }
-}
+} */

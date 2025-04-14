@@ -39,10 +39,9 @@ body.dark-theme {
   background-image: url("/images/dark-sun-bg.jpg");
 }
 
-h1 {
+/* h1 {
   /* font-size: 3.2em;
-  line-height: 1.1; */
-}
+  line-height: 1.1; }*/
 
 button {
   border-radius: 8px;

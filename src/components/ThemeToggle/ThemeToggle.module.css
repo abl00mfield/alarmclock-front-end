@@ -1,0 +1,11 @@
+.themeButton {
+  background-color: #e3997f;
+  font-size: 1em;
+  width: 200px;
+}
+
+@media (max-width: 768px) {
+  .themeButton {
+    font-size: 0.6em;
+  }
+}

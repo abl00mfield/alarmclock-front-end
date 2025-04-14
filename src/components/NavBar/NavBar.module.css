@@ -7,6 +7,7 @@
   position: fixed;
   padding: 1rem 2rem;
   padding-left: 0;
+  padding-right: 5px;
   align-items: center;
   background-color: #ffefdb;
   border-bottom: 1px solid rgb(200, 200, 200);
@@ -42,4 +43,10 @@
 .right {
   display: flex;
   justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+  .container ul {
+    font-size: 12px;
+  }
 }
