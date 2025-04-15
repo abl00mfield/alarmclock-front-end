@@ -8,7 +8,7 @@
   flex-direction: column;
   font-family: DS-DIGII;
   align-items: center;
-  font-size: calc(40px + 4vw);
+  font-size: calc(30px + 4vw);
   /* font-size: 6vw; */
   font-weight: 500;
   width: 35%;
@@ -21,8 +21,8 @@
   opacity: 0.95;
 }
 
-/* @media (max-width: 768px) {
+@media (max-width: 768px) {
   .clockContainer {
-    font-size: 10vw;
+    font-size: calc(20px + 6vw);
   }
-} */
+}

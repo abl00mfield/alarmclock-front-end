@@ -40,8 +40,9 @@ const SignUpForm = () => {
   return (
     <main className={styles.pageWrapper}>
       <div className={styles.container}>
-        <h1 className={styles.signUpHeader}>Sign Up</h1>
-        <p className={styles.message}>{message}</p>
+        <h1 className={styles.header}>Sign Up</h1>
+        {message && <p className={styles.message}>{message}</p>}
+
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.field}>
             <label htmlFor="username">Username:</label>

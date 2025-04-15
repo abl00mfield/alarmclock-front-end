@@ -13,16 +13,12 @@ const AlarmList = ({ alarms }) => {
             key={alarm._id}
             to={`/alarms/${alarm._id}`}
           >
-            <div className={styles.alarmText}>
-              <h2>{formatTimeTo12Hour(alarm.time)}</h2>
-              <p>Name: {alarm.name}</p>
+            <img src="/images/alarm-clock-black-white.png" alt="alarm clock" />
 
-              {alarm.active ? (
-                <p>Alarm is active</p>
-              ) : (
-                <p>Alarm is not active</p>
-              )}
-            </div>
+            <h2>{formatTimeTo12Hour(alarm.time)}</h2>
+            <p>Name: {alarm.name}</p>
+
+            {alarm.active ? <p>Alarm is active</p> : <p>Alarm is not active</p>}
           </Link>
         ))}
       </div>

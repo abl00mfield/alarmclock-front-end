@@ -5,30 +5,31 @@ import { useParams, Link } from "react-router";
 import * as alarmService from "../../services/alarmService";
 import { formatTimeTo12Hour } from "../../utils/timeUtils";
 import styles from "./AlarmDetails.module.css";
-import Clock from "../Clock/Clock";
 
-const AlarmDetails = (props) => {
-  const [alarm, setAlarm] = useState(null);
+const AlarmDetails = ({ alarms, handleDeleteAlarm }) => {
+  // const [alarm, setAlarm] = useState(null);
   const { alarmId } = useParams();
   const { user } = useContext(UserContext);
   const audioRef = useRef(null);
 
-  useEffect(() => {
-    const fetchAlarm = async () => {
-      try {
-        const alarmData = await alarmService.show(alarmId);
-        setAlarm(alarmData);
-      } catch (err) {
-        console.error("Error fetching alarm:", error);
-      }
-    };
-    fetchAlarm();
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-      }
-    };
-  }, [alarmId]);
+  // useEffect(() => {
+  //   const fetchAlarm = async () => {
+  //     try {
+  //       const alarmData = await alarmService.show(alarmId);
+  //       setAlarm(alarmData);
+  //     } catch (err) {
+  //       console.error("Error fetching alarm:", error);
+  //     }
+  //   };
+  //   fetchAlarm();
+  //   return () => {
+  //     if (audioRef.current) {
+  //       audioRef.current.pause();
+  //     }
+  //   };
+  // }, [alarmId]);
+
+  const alarm = alarms.find((a) => a._id === alarmId);
 
   const playTone = () => {
     if (alarm?.tone?.fileUrl) {
@@ -82,7 +83,7 @@ const AlarmDetails = (props) => {
                 Edit
               </Link>
               <button
-                onClick={() => props.handleDeleteAlarm(alarmId)}
+                onClick={() => handleDeleteAlarm(alarmId)}
                 className={`${styles.button} ${styles.deleteButton}`}
               >
                 Delete

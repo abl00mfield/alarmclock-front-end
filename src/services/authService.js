@@ -10,8 +10,8 @@ const signUp = async (formData) => {
 
     const data = await res.json();
 
-    if (data.error) {
-      throw new Error(data.error);
+    if (data.err) {
+      throw new Error(data.err);
     }
 
     if (data.token) {
@@ -36,8 +36,8 @@ const signIn = async (formData) => {
 
     const data = await res.json();
 
-    if (data.error) {
-      throw new Error(data.error);
+    if (data.err) {
+      throw new Error(data.err);
     }
 
     if (data.token) {

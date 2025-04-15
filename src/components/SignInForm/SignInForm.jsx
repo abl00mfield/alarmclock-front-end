@@ -34,9 +34,14 @@ const SignInForm = () => {
   return (
     <div className={styles.pageWrapper}>
       <main className={styles.container}>
-        <h1>Sign In</h1>
-        <p className={styles.message}>{message}</p>
-        <form autoComplete="off" onSubmit={handleSubmit}>
+        <h1 className={styles.header}>Sign In</h1>
+        {message && <p className={styles.message}>{message}</p>}
+
+        <form
+          className={styles.form}
+          autoComplete="off"
+          onSubmit={handleSubmit}
+        >
           <div className={styles.field}>
             <label htmlFor="email">Username:</label>
             <input
