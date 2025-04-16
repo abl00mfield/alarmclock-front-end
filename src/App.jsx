@@ -16,16 +16,20 @@ import * as alarmService from "./services/alarmService";
 function App() {
   const { user } = useContext(UserContext);
   const [alarms, setAlarms] = useState([]);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     //lets fetch all the current user's alarms and pass down to the clock component so it has access to them
     const fetchAlarms = async () => {
+      setLoading(true);
       try {
         const fetchedAlarms = await alarmService.index();
         setAlarms(fetchedAlarms);
       } catch (err) {
         console.log(err);
+      } finally {
+        setLoading(false);
       }
     };
     if (user) fetchAlarms();
@@ -33,25 +37,50 @@ function App() {
 
   // handleAddAlarm to go to /alarms
   const handleAddAlarm = async (alarmFormData) => {
-    await alarmService.create(alarmFormData);
-    const fetchedAlarms = await alarmService.index();
-    setAlarms(fetchedAlarms);
+    setLoading(true);
+    try {
+      await alarmService.create(alarmFormData);
+      const fetchedAlarms = await alarmService.index();
+      setAlarms(fetchedAlarms);
+    } catch (err) {
+      console.error("Error adding alarm", err.message);
+    } finally {
+      setLoading(false);
+    }
     navigate("/alarms");
   };
 
   const handleUpdateAlarm = async (alarmId, alarmFormData) => {
-    const updatedAlarm = await alarmService.updateAlarm(alarmId, alarmFormData);
-    const updatedAlarms = alarms.map((alarm) =>
-      alarmId === alarm._id ? updatedAlarm : alarm
-    );
-    updatedAlarms.sort((a, b) => a.time.localeCompare(b.time));
-    setAlarms(updatedAlarms);
-    navigate(`/alarms/${alarmId}`);
+    setLoading(true);
+    try {
+      const updatedAlarm = await alarmService.updateAlarm(
+        alarmId,
+        alarmFormData
+      );
+      const updatedAlarms = alarms.map((alarm) =>
+        alarmId === alarm._id ? updatedAlarm : alarm
+      );
+      updatedAlarms.sort((a, b) => a.time.localeCompare(b.time));
+      setAlarms(updatedAlarms);
+      navigate(`/alarms/${alarmId}`);
+    } catch (err) {
+      console.error("Error updating Alarm ", err.message);
+      navigate("/alarms");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleDeleteAlarm = async (alarmId) => {
-    const deletedAlarm = await alarmService.deleteAlarm(alarmId);
-    setAlarms(alarms.filter((alarm) => alarm._id !== deletedAlarm._id));
+    setLoading(true);
+    try {
+      const deletedAlarm = await alarmService.deleteAlarm(alarmId);
+      setAlarms(alarms.filter((alarm) => alarm._id !== deletedAlarm._id));
+    } catch (err) {
+      console.error("Error deleting alarm", err.message);
+    } finally {
+      setLoading(false);
+    }
     navigate("/alarms");
   };
 

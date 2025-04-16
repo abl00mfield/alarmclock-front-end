@@ -30,7 +30,12 @@ const AlarmDetails = ({ alarms, handleDeleteAlarm }) => {
     }
   };
 
-  if (!alarm) return <main>Loading.....</main>;
+  if (!alarm)
+    return (
+      <main>
+        <img src="/images/loading.gif" alt="loading circle" />
+      </main>
+    );
 
   return (
     <main className={styles.wrapper}>

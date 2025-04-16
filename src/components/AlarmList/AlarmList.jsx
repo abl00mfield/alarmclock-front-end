@@ -1,6 +1,5 @@
 import { Link } from "react-router";
 import { formatTimeTo12Hour } from "../../utils/timeUtils";
-import Clock from "../Clock/Clock";
 import styles from "./AlarmList.module.css";
 
 const AlarmList = ({ alarms }) => {
