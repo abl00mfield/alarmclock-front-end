@@ -47,6 +47,12 @@
 
 @media (max-width: 768px) {
   .container ul {
-    font-size: 18px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 500px) {
+  .container ul {
+    font-size: 12px;
   }
 }

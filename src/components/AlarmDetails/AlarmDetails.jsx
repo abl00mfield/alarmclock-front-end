@@ -1,33 +1,14 @@
 const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}`;
-import { useState, useEffect, useContext, useRef } from "react";
+import { useContext, useRef } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import { useParams, Link } from "react-router";
-import * as alarmService from "../../services/alarmService";
 import { formatTimeTo12Hour } from "../../utils/timeUtils";
 import styles from "./AlarmDetails.module.css";
 
 const AlarmDetails = ({ alarms, handleDeleteAlarm }) => {
-  // const [alarm, setAlarm] = useState(null);
   const { alarmId } = useParams();
   const { user } = useContext(UserContext);
   const audioRef = useRef(null);
-
-  // useEffect(() => {
-  //   const fetchAlarm = async () => {
-  //     try {
-  //       const alarmData = await alarmService.show(alarmId);
-  //       setAlarm(alarmData);
-  //     } catch (err) {
-  //       console.error("Error fetching alarm:", error);
-  //     }
-  //   };
-  //   fetchAlarm();
-  //   return () => {
-  //     if (audioRef.current) {
-  //       audioRef.current.pause();
-  //     }
-  //   };
-  // }, [alarmId]);
 
   const alarm = alarms.find((a) => a._id === alarmId);
 

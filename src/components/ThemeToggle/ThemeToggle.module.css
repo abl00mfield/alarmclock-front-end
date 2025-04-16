@@ -6,6 +6,13 @@
 
 @media (max-width: 768px) {
   .themeButton {
-    font-size: 0.6em;
+    font-size: 14px;
+    width: 175px;
+  }
+}
+
+@media (max-width: 500px) {
+  .themeButton {
+    font-size: 12px;
   }
 }

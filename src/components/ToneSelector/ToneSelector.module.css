@@ -1,5 +1,13 @@
-.tone select{
-    width: 70%;
-    border-radius: 6px;
-    font-size: 16px;
+.tone {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tone select {
+  width: 50%;
+  border-radius: 6px;
+  font-size: 16px;
+  height: 30px;
 }
