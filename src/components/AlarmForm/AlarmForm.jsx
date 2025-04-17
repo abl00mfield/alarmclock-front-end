@@ -1,13 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router";
 import ToneSelector from "../ToneSelector/ToneSelector";
-import * as alarmService from "../../services/alarmService";
 import styles from "./AlarmForm.module.css";
-import Clock from "../Clock/Clock";
 
-const AlarmForm = (props) => {
+const AlarmForm = ({ alarms, handleAddAlarm, handleUpdateAlarm }) => {
   const { alarmId } = useParams();
   const audioRef = useRef(null); //this is a container for the audio object that is created in the tone selector
+  const [loading, setLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -41,18 +40,24 @@ const AlarmForm = (props) => {
     };
 
     if (alarmId) {
-      props.handleUpdateAlarm(alarmId, updatedFormData);
+      handleUpdateAlarm(alarmId, updatedFormData);
     } else {
-      props.handleAddAlarm(updatedFormData);
+      handleAddAlarm(updatedFormData);
     }
   };
 
   useEffect(() => {
-    const fetchAlarm = async () => {
-      const alarmData = await alarmService.show(alarmId);
-      setFormData({ ...alarmData, tone: alarmData.tone?._id || "" });
-    };
-    if (alarmId) fetchAlarm();
+    if (alarmId && alarms?.length) {
+      setLoading(true);
+      const foundAlarm = alarms.find((alarm) => alarm._id === alarmId);
+      if (foundAlarm) {
+        setFormData({
+          ...foundAlarm,
+          tone: foundAlarm.tone?._id || "",
+        });
+      }
+    }
+    setLoading(false);
     //clean up function
     return () =>
       setFormData({
@@ -62,10 +67,11 @@ const AlarmForm = (props) => {
         snoozeOn: false,
         active: true,
       });
-  }, [alarmId]);
+  }, [alarmId, alarms]);
 
   return (
     <main className={styles.pageWrapper}>
+      {loading && <LoadingSpinner message="Getting alarm data..." />}
       <div className={styles.container}>
         <h1 className={styles.title}>{alarmId ? "Edit Alarm" : "New Alarm"}</h1>
         <form onSubmit={handleSubmit} className={styles.form}>
