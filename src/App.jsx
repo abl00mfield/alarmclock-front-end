@@ -36,7 +36,11 @@ function App() {
         setMessage("");
       }
     };
-    if (user) fetchAlarms();
+    if (user) {
+      fetchAlarms();
+    } else {
+      setAlarms([]);
+    }
   }, [user]);
 
   // handleAddAlarm to go to /alarms

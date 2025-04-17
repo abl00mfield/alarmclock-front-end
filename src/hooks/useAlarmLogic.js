@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
+import { UserContext } from "../contexts/UserContext";
 const SNOOZE_AMT = 1;
 const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}`;
 
@@ -9,6 +10,7 @@ export function useAlarmLogic(alarms) {
   const [ringingAlarm, setRingingAlarm] = useState(new Set());
   const audioRef = useRef(null);
   const alarmTimeoutRef = useRef(null);
+  const { user } = useContext(UserContext);
 
   const playAlarmSound = async (alarm) => {
     if (!alarm.tone?.fileUrl) return;
@@ -101,6 +103,10 @@ export function useAlarmLogic(alarms) {
       });
     }, 1000);
 
+    if (alarms.length === 0 || !user) {
+      stopAlarm();
+    }
+
     return () => {
       clearInterval(timer);
 
@@ -116,7 +122,7 @@ export function useAlarmLogic(alarms) {
       }
     };
     //clean up logic
-  }, [alarms, snoozedUntilMap, ringingAlarm]);
+  }, [alarms, snoozedUntilMap, ringingAlarm, user]);
 
   return {
     currentTime,
