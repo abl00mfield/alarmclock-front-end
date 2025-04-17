@@ -2,12 +2,14 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router";
 import { signUp } from "../../services/authService";
 import { UserContext } from "../../contexts/UserContext";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import styles from "./SignUpForm.module.css";
 
 const SignUpForm = () => {
   const navigate = useNavigate();
   const { setUser } = useContext(UserContext);
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -24,12 +26,15 @@ const SignUpForm = () => {
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
+    setLoading(true);
     try {
       const newUser = await signUp(formData);
       setUser(newUser);
       navigate("/");
     } catch (err) {
       setMessage(err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -39,6 +44,7 @@ const SignUpForm = () => {
 
   return (
     <main className={styles.pageWrapper}>
+      {loading && <LoadingSpinner message="Signing up..." />}
       <div className={styles.container}>
         <h1 className={styles.header}>Sign Up</h1>
         {message && <p className={styles.message}>{message}</p>}

@@ -18,12 +18,14 @@ function App() {
   const { user } = useContext(UserContext);
   const [alarms, setAlarms] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
     //lets fetch all the current user's alarms and pass down to the clock component so it has access to them
     const fetchAlarms = async () => {
       setLoading(true);
+      setMessage("Getting alarms ...");
       try {
         const fetchedAlarms = await alarmService.index();
         setAlarms(fetchedAlarms);
@@ -31,6 +33,7 @@ function App() {
         console.log(err);
       } finally {
         setLoading(false);
+        setMessage("");
       }
     };
     if (user) fetchAlarms();
@@ -39,6 +42,7 @@ function App() {
   // handleAddAlarm to go to /alarms
   const handleAddAlarm = async (alarmFormData) => {
     setLoading(true);
+    setMessage("Adding alarm...");
     try {
       await alarmService.create(alarmFormData);
       const fetchedAlarms = await alarmService.index();
@@ -47,12 +51,14 @@ function App() {
       console.error("Error adding alarm", err.message);
     } finally {
       setLoading(false);
+      setMessage("");
     }
     navigate("/alarms");
   };
 
   const handleUpdateAlarm = async (alarmId, alarmFormData) => {
     setLoading(true);
+    setMessage("Updating alarm...");
     try {
       const updatedAlarm = await alarmService.updateAlarm(
         alarmId,
@@ -69,11 +75,13 @@ function App() {
       navigate("/alarms");
     } finally {
       setLoading(false);
+      setMessage("");
     }
   };
 
   const handleDeleteAlarm = async (alarmId) => {
     setLoading(true);
+    setMessage("Deleting alarm...");
     try {
       const deletedAlarm = await alarmService.deleteAlarm(alarmId);
       setAlarms(alarms.filter((alarm) => alarm._id !== deletedAlarm._id));
@@ -81,13 +89,14 @@ function App() {
       console.error("Error deleting alarm", err.message);
     } finally {
       setLoading(false);
+      setMessage("");
     }
     navigate("/alarms");
   };
 
   return (
     <>
-      {loading && <LoadingSpinner />}
+      {loading && <LoadingSpinner message={message} />}
       <NavBar />
       <Clock alarms={alarms} />
       <Routes>

@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router";
 
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import { signIn } from "../../services/authService";
 
 import { UserContext } from "../../contexts/UserContext";
@@ -10,6 +11,7 @@ const SignInForm = () => {
   const navigate = useNavigate();
   const { setUser } = useContext(UserContext);
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -22,17 +24,21 @@ const SignInForm = () => {
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
+    setLoading(true);
     try {
       const signedInUser = await signIn(formData);
       setUser(signedInUser);
       navigate("/");
     } catch (err) {
       setMessage(err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className={styles.pageWrapper}>
+      {loading && <LoadingSpinner message="Signing in..." />}
       <main className={styles.container}>
         <h1 className={styles.header}>Sign In</h1>
         {message && <p className={styles.message}>{message}</p>}
