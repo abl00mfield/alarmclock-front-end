@@ -26,3 +26,9 @@
     font-size: calc(20px + 6vw);
   }
 }
+
+@media (max-width: 500px) {
+  .clockContainer {
+    font-size: 50px;
+  }
+}

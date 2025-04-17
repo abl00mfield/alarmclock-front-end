@@ -34,11 +34,14 @@
   padding: 15px;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
   .landing h1 {
     font-size: 30px;
   }
   .landing p {
     font-size: 20px;
+  }
+  .landingBlurb {
+    width: 80%;
   }
 }

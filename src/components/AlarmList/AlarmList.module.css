@@ -8,7 +8,7 @@
 }
 
 .alarmContainer {
-  margin-top: 20px;
+  margin: 20px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
