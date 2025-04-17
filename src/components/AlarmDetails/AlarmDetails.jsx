@@ -3,6 +3,7 @@ import { useContext, useRef } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import { useParams, Link } from "react-router";
 import { formatTimeTo12Hour } from "../../utils/timeUtils";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import styles from "./AlarmDetails.module.css";
 
 const AlarmDetails = ({ alarms, handleDeleteAlarm }) => {
@@ -30,12 +31,7 @@ const AlarmDetails = ({ alarms, handleDeleteAlarm }) => {
     }
   };
 
-  if (!alarm)
-    return (
-      <main>
-        <img src="/images/loading.gif" alt="loading circle" />
-      </main>
-    );
+  if (!alarm) return <LoadingSpinner message="loading alarm details" />;
 
   return (
     <main className={styles.wrapper}>

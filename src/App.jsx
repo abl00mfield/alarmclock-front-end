@@ -11,6 +11,7 @@ import { UserContext } from "./contexts/UserContext";
 import AlarmForm from "./components/AlarmForm/AlarmForm";
 import AlarmList from "./components/AlarmList/AlarmList";
 import AlarmDetails from "./components/AlarmDetails/AlarmDetails";
+import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
 import * as alarmService from "./services/alarmService";
 
 function App() {
@@ -86,6 +87,7 @@ function App() {
 
   return (
     <>
+      {loading && <LoadingSpinner />}
       <NavBar />
       <Clock alarms={alarms} />
       <Routes>
