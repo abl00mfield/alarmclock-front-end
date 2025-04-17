@@ -100,10 +100,7 @@ function App() {
       <NavBar />
       <Clock alarms={alarms} />
       <Routes>
-        <Route
-          path="/"
-          element={user ? <Dashboard alarms={alarms} /> : <Landing />}
-        />
+        <Route path="/" element={user ? <Dashboard /> : <Landing />} />
         {user ? (
           <>
             <Route path="/alarms" element={<AlarmList alarms={alarms} />} />

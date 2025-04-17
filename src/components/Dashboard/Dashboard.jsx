@@ -1,7 +1,6 @@
-import Clock from "../Clock/Clock";
 import styles from "./Dashboard.module.css";
 
-const Dashboard = ({ alarms }) => {
+const Dashboard = () => {
   return (
     <main className={styles.pageWrapper}>
       <div className={styles.introBlurb}>

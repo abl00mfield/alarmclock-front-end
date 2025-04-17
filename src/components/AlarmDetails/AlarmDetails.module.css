@@ -3,74 +3,70 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 2rem;
+  padding: 1rem;
 }
 
 .card {
-  max-width: 350px;
+  max-width: 300px;
   /* margin: 30px; */
   width: 100%;
-  padding: 1.5rem;
-  background-color: #edb5a3;
+  padding: 1rem;
+  background-color: #d9cac7;
   border-radius: 16px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.824);
   text-align: center;
-  font-family: sans-serif;
 }
 
 .title {
   font-size: 2rem;
-  margin-bottom: 1rem;
 }
 
 .info {
   font-size: 1.3rem;
-  color: #333;
-  margin: 0.5rem 0;
+  color: #1b1e2f;
 }
 
 .status {
-  color: dimgrey;
+  color: rgb(66, 66, 66);
   font-size: 1.1rem;
 }
 
 .buttonGroup {
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
   display: flex;
   justify-content: center;
   gap: 1rem;
 }
 
+.deleteButton,
 .button {
-  padding: 0.6rem 1.2rem;
+  /* padding: 0.6rem 1.2rem; */
   background-color: #343d51;
   color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
+  /* margin-top: 0; */
+}
+
+.deleteButton {
+  background-color: #e76435fe;
 }
 
 .button:hover {
-  background-color: #5f5b8e;
+  background-color: #576e7c;
 }
 
 .actions {
   margin-top: 1.5rem;
 }
 
-.deleteButton {
-  background-color: #a31e2c;
-}
-
-.deleteButton:hover {
-  background-color: #b85660;
-}
 .link {
   display: inline-block;
   padding: 0.5rem 1.2rem;
   margin-right: 1rem;
-  background-color: #0f5197;
+  background-color: #e76435fe;
   color: white;
   border: none;
   border-radius: 8px;
@@ -81,7 +77,8 @@
   cursor: pointer;
 }
 
-.link:hover {
+.link:hover,
+.deleteButton:hover {
   color: white;
-  background-color: #4375ab;
+  background-color: #e08766fe;
 }

@@ -56,19 +56,17 @@ const AlarmDetails = ({ alarms, handleDeleteAlarm }) => {
           </button>
         </div>
         {alarm.owner._id === user._id && (
-          <>
-            <div className={styles.actions}>
-              <Link to={`/alarms/${alarmId}/edit`} className={styles.link}>
-                Edit
-              </Link>
-              <button
-                onClick={() => handleDeleteAlarm(alarmId)}
-                className={`${styles.button} ${styles.deleteButton}`}
-              >
-                Delete
-              </button>
-            </div>
-          </>
+          <div className={styles.actions}>
+            <Link to={`/alarms/${alarmId}/edit`} className={styles.link}>
+              Edit
+            </Link>
+            <button
+              onClick={() => handleDeleteAlarm(alarmId)}
+              className={styles.deleteButton}
+            >
+              Delete
+            </button>
+          </div>
         )}
       </div>
     </main>

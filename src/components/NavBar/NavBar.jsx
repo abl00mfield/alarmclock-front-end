@@ -17,7 +17,14 @@ const NavBar = () => {
       {user ? (
         <div className={styles.navContainer}>
           <ul>
-            <li>Alarm Mate</li>
+            <li>
+              <img
+                src="/images/alarm-clock.png"
+                alt="alarm clock"
+                width="30px"
+              />
+            </li>
+            <li>Welcome - {user.username}</li>
             <li>
               <Link to="/">Home</Link>
             </li>
@@ -33,13 +40,13 @@ const NavBar = () => {
           <ThemeToggle />
         </div>
       ) : (
-        <ul>
-          <div className={styles.left}>
+        <ul className={styles.navContainer}>
+          <div>
             <li>
               <Link to="/">Home</Link>
             </li>
           </div>
-          <div className={styles.right}>
+          <div className={styles.signInUp}>
             <li>
               <Link to="/sign-in">Sign In</Link>
             </li>

@@ -40,9 +40,10 @@
   text-align: left;
 }
 
-.right {
+.signInUp {
   display: flex;
-  justify-content: flex-end;
+  flex-direction: row;
+  padding-right: 10px;
 }
 
 @media (max-width: 768px) {
