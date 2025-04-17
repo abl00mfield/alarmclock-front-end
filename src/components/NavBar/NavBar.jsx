@@ -41,7 +41,8 @@ const NavBar = () => {
         </div>
       ) : (
         <ul className={styles.navContainer}>
-          <div>
+          <div className={styles.home}>
+            <li>Alarm Mate</li>
             <li>
               <Link to="/">Home</Link>
             </li>

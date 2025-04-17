@@ -35,9 +35,8 @@
   width: 100%;
 }
 
-.left {
-  flex: 1;
-  text-align: left;
+.home {
+  display: flex;
 }
 
 .signInUp {
