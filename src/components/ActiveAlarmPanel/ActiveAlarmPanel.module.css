@@ -1,14 +1,30 @@
-.activeAlarm {
+/* .activeAlarm {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* width: 50%; */
+
   min-width: 35%;
   border: 1px black solid;
   background-color: antiquewhite;
   opacity: 0.8;
   margin: 15px;
+} */
+
+.activeAlarm {
+  width: 100%;
+  max-width: 350px;
+  border: 1px solid black;
+  background-color: antiquewhite;
+  opacity: 0.9;
+  margin: 15px auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border-radius: 8px;
 }
 
 .alarmInfo {
@@ -25,4 +41,22 @@
 .stopButton,
 .snoozeButton {
   margin: 10px;
+}
+
+@media (max-width: 600px) {
+  .activeAlarm {
+    max-width: 75%;
+    margin: 10px auto;
+  }
+
+  .stopButton,
+  .snoozeButton {
+    width: 100%;
+    margin: 8px 0;
+  }
+
+  .alarmName {
+    font-size: 1.1rem;
+    text-align: center;
+  }
 }
