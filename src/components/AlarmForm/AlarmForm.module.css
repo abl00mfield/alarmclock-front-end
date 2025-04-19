@@ -11,8 +11,8 @@
   justify-content: center;
   align-items: center;
   margin: 20px;
-  width: 45%;
-  min-width: 350px;
+  width: 100%;
+
   max-width: 450px;
   padding: 20px;
   background: #d9cac7;
@@ -48,11 +48,11 @@
   color: #444;
 }
 
-label {
+/* label {
   margin-bottom: 0.5rem;
   font-weight: 500;
   color: darkgray;
-}
+} */
 
 .radioGroup label {
   color: #444;
@@ -64,12 +64,6 @@ input[type="time"] {
   border-radius: 8px;
   border: 1px solid #ccc;
   font-size: 1rem;
-}
-
-input:focus {
-  outline: none;
-  border-color: #4f46e5;
-  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
 }
 
 .radioGroup {
@@ -86,7 +80,7 @@ input:focus {
 .button {
   padding: 0.8rem;
   font-size: 1rem;
-  background-color: #4f46e5;
+  background-color: #31364c;
   color: white;
   border: none;
   border-radius: 10px;
@@ -95,9 +89,5 @@ input:focus {
 }
 
 .button:hover {
-  background-color: #4338ca;
-}
-
-.link:hover {
-  background-color: #0056b3;
+  background-color: #606992;
 }
