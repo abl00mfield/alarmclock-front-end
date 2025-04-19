@@ -3,7 +3,7 @@ import styles from "./Dashboard.module.css";
 const Dashboard = () => {
   return (
     <main className={styles.pageWrapper}>
-      <div className={styles.introBlurb}>
+      <div className={styles.introParagraph}>
         <h1 className={styles.title}>Alarm Mate</h1>
         <p className={styles.p}>
           Do you have trouble keeping track of time? If so, you're not alone.
