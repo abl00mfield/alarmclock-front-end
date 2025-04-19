@@ -63,3 +63,24 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
+
+label {
+  margin-bottom: 0.4rem;
+  font-weight: bold;
+  color: #444;
+}
+
+input {
+  background-color: #fff;
+  color: black;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border 0.2s ease;
+}
+
+input:focus {
+  border-color: #4f46e5;
+  outline: none;
+}

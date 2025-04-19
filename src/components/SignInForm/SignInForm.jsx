@@ -73,7 +73,9 @@ const SignInForm = () => {
             />
           </div>
           <div className={styles.buttons}>
-            <button type="submit">Sign In</button>
+            <button className={styles.submitBtn} type="submit">
+              Sign In
+            </button>
             <button type="button" onClick={() => navigate("/")}>
               Cancel
             </button>
