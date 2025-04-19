@@ -8,27 +8,30 @@
   flex-direction: column;
   font-family: DS-DIGII;
   align-items: center;
-  font-size: calc(30px + 4vw);
-  /* font-size: 6vw; */
+  font-size: clamp(4rem, 10vw, 5rem);
   font-weight: 500;
-  width: 35%;
-  min-width: 300px;
+  width: 100%;
+  max-width: 425px;
   border: 2px solid black;
   padding-bottom: 10px;
   background-color: #1a1e2f;
   color: #e76435fe;
   border-radius: 5px;
   opacity: 0.95;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @media (max-width: 768px) {
   .clockContainer {
-    font-size: calc(20px + 6vw);
+    max-width: 400px;
   }
 }
 
 @media (max-width: 500px) {
   .clockContainer {
-    font-size: 50px;
+    max-width: 350px;
   }
 }
