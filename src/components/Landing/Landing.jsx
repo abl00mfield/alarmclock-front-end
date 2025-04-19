@@ -3,8 +3,8 @@ import styles from "./Landing.module.css";
 
 const Landing = () => {
   return (
-    <main className={styles.landing}>
-      <div className={styles.landingBlurb}>
+    <main className={styles.pageWrapper}>
+      <div className={styles.landing}>
         <h1>Welcome to Alarm Mate</h1>
         <p>Sign up now, or sign in to create your own personalized alarms!</p>
       </div>
