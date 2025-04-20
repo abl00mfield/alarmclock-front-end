@@ -7,13 +7,12 @@
 @media (max-width: 768px) {
   .themeButton {
     font-size: 14px;
-    width: 175px;
+    width: 150px;
   }
 }
 
 @media (max-width: 500px) {
   .themeButton {
-    font-size: 12px;
     width: 150px;
   }
 }

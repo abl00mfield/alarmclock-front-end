@@ -5,54 +5,86 @@
   height: 60px;
   display: flex;
   position: fixed;
-  padding: 1rem 2rem;
-  padding-left: 0;
   padding-right: 5px;
   align-items: center;
   background-color: #ffefdb;
   border-bottom: 1px solid rgb(200, 200, 200);
   box-sizing: border-box;
-  overflow: hidden;
-}
-
-.container ul {
-  margin: 0;
-  width: 100%;
-  display: flex;
-  list-style: none;
-  font-weight: bold;
-  align-items: center;
-  padding-left: 0;
-}
-
-.container li {
-  margin-left: 1rem;
+  overflow: visible;
 }
 
 .navContainer {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  height: 100%;
+  align-items: center;
+}
+.navLeft {
+  display: flex;
+  align-items: center;
+  position: relative;
+  /* padding-top: 10px; */
+}
+
+.hamburger {
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: none; /* hidden by default */
+  margin-right: 1rem;
+  padding-left: 10px;
+}
+
+.navLinks {
+  list-style: none;
+  padding-left: 10px;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.navLinks li {
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  display: flex;
+  align-items: center; /* Ensures text is centered inside li */
 }
 
 .home {
   display: flex;
+  gap: 10px;
 }
 
 .signInUp {
   display: flex;
   flex-direction: row;
   padding-right: 10px;
+  gap: 10px;
 }
 
-@media (max-width: 768px) {
-  .container ul {
-    font-size: 14px;
+@media (max-width: 670px) {
+  .hamburger {
+    display: block;
   }
-}
 
-@media (max-width: 500px) {
-  .container ul {
-    font-size: 12px;
+  .navLinks {
+    display: none;
+    flex-direction: column;
+    background-color: #ffefdb;
+    padding: 0.5rem 1rem;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100vw;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+  }
+
+  .navLinks.show {
+    display: flex;
   }
 }
