@@ -3,12 +3,11 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 1rem;
+  min-height: 100vh;
 }
 
 .card {
   max-width: 300px;
-  /* margin: 30px; */
   width: 100%;
   padding: 1rem;
   background-color: #d9cac7;
