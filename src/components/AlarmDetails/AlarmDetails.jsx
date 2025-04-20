@@ -11,6 +11,7 @@ const AlarmDetails = ({ alarms, handleDeleteAlarm }) => {
   const audioRef = useRef(null);
 
   const alarm = alarms.find((a) => a._id === alarmId);
+  if (!alarm) return;
 
   const playTone = () => {
     if (alarm?.tone?.fileUrl) {

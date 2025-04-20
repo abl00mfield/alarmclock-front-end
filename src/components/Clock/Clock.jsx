@@ -35,6 +35,7 @@ const Clock = ({ alarms }) => {
       <SnoozeNoticeList
         snoozedUntilMap={snoozedUntilMap}
         handleCancel={cancelSnooze}
+        alarms={alarms}
       />
 
       {user && <AddAlarmLink />}
