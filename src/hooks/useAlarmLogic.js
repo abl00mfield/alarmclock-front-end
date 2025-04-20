@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
-const SNOOZE_AMT = 1;
+const SNOOZE_AMT = 5;
 const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}`;
 
 export function useAlarmLogic(alarms) {
