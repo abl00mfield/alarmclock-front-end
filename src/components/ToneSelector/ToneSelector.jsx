@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { index } from "../../services/toneService";
-import styles from './ToneSelector.module.css';
+import styles from "./ToneSelector.module.css";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 const BASE_URL = import.meta.env.VITE_BACK_END_SERVER_URL;
 
 const ToneSelector = ({ selectedTone, handleChange, audioRef }) => {
@@ -32,7 +33,7 @@ const ToneSelector = ({ selectedTone, handleChange, audioRef }) => {
     fetchTones(); //fetch the tones when the component loads
   }, []); //no dependency array
 
-  if (loading) return <p>Loading tones...</p>;
+  if (loading) return <LoadingSpinner message="Loading tones..." />;
 
   const handleToneChange = (event) => {
     const selectedId = event.target.value;

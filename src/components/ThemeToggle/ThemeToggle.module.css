@@ -1,7 +1,12 @@
 .themeButton {
   background-color: #e3997f;
   font-size: 1em;
-  width: 200px;
+  width: 170px;
+  color: #31364d;
+}
+
+.themeButton:hover {
+  background-color: #e2ad9a;
 }
 
 @media (max-width: 768px) {
@@ -13,6 +18,6 @@
 
 @media (max-width: 500px) {
   .themeButton {
-    width: 150px;
+    width: 140px;
   }
 }

@@ -68,14 +68,24 @@
 }
 
 .submitBtn:disabled {
-  background-color: #ccc;
-  color: #444;
+  background-color: #b4adad;
+  color: black;
   cursor: not-allowed;
 }
 
 .submitBtn:disabled:hover {
-  background-color: #ccc;
-  color: #444;
+  background-color: #b4adad;
+  color: black;
   cursor: not-allowed;
   border: none;
+}
+
+.cancelBtn {
+  background-color: #31364c;
+  color: white;
+  border: none;
+}
+
+.cancelBtn:hover {
+  background-color: #606992;
 }

@@ -34,7 +34,7 @@ For the planning of Alarm Mate, we created an ERD chart, wireframes, a routing c
 
 ## Back-End Repo
 
-Here is the githbub link to the back end:
+Here is the githhub link to the back end:
 [Back-end Repo](https://github.com/abl00mfield/alarm-app-back-end)
 
 ## Resources Used

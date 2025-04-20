@@ -3,6 +3,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  color: #31364d;
 }
 
 .tone select {
@@ -10,4 +11,13 @@
   border-radius: 6px;
   font-size: 16px;
   height: 30px;
+  color: #31364d;
+}
+
+@media (max-width: 670px) {
+  .tone {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
 }

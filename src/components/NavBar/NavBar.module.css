@@ -39,6 +39,7 @@ ul.navContainer {
   display: none; /* hidden by default */
   margin-right: 1rem;
   padding-left: 10px;
+  color: #31364d;
 }
 
 .navLinks {
