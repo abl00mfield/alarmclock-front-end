@@ -25,7 +25,7 @@ const NavBar = () => {
           <div className={styles.navContainer}>
             <div className={styles.navLeft}>
               <button className={styles.hamburger} onClick={toggleMenu}>
-                ☰
+                {isMenuOpen ? "x" : "☰"}
               </button>
               <ul
                 className={`${styles.navLinks} ${
