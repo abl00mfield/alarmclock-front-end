@@ -72,6 +72,7 @@ const ToneSelector = ({ selectedTone, handleChange, audioRef }) => {
     <div className={styles.tone}>
       <label htmlFor="tone">Select a tone: </label>
       <select
+        className={styles.select}
         name="tone"
         id="tone"
         value={selectedTone}
