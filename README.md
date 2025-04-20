@@ -12,7 +12,7 @@ BrightBell is a full stack alarm app that allows users to create custom alarms t
 
 ## Live Demo
 
-Check out Alarm Mate [here](https://alarmmate.netlify.app/).
+Check out BrightBell [here](https://brightbell.netlify.app/).
 
 ## Planning Materials
 
