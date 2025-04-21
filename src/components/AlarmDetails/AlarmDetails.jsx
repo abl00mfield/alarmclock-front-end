@@ -1,8 +1,9 @@
 const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}`;
-import { useContext, useRef } from "react";
+import { useContext, useRef, useEffect } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import { useParams, Link } from "react-router";
 import { formatTimeTo12Hour } from "../../utils/timeUtils";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import styles from "./AlarmDetails.module.css";
 
 const AlarmDetails = ({ alarms, handleDeleteAlarm }) => {
@@ -11,7 +12,16 @@ const AlarmDetails = ({ alarms, handleDeleteAlarm }) => {
   const audioRef = useRef(null);
 
   const alarm = alarms.find((a) => a._id === alarmId);
-  if (!alarm) return;
+
+  useEffect(() => {
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+        audioRef.current = null;
+      }
+    };
+  }, []);
 
   const playTone = () => {
     if (alarm?.tone?.fileUrl) {
@@ -30,6 +40,14 @@ const AlarmDetails = ({ alarms, handleDeleteAlarm }) => {
       audioRef.current = null;
     }
   };
+
+  if (!alarm) {
+    return (
+      <main className={styles.wrapper}>
+        <LoadingSpinner message="Loading alarm details..." />
+      </main>
+    );
+  }
 
   return (
     <main className={styles.wrapper}>

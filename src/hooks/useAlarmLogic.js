@@ -1,13 +1,12 @@
 import { useState, useEffect, useRef, useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
-const SNOOZE_AMT = 5;
+const SNOOZE_AMT = 2;
 const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}`;
 
 export function useAlarmLogic(alarms) {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [activeAlarm, setActiveAlarm] = useState(null);
   const [snoozedUntilMap, setSnoozedUntilMap] = useState(new Map());
-  const [ringingAlarm, setRingingAlarm] = useState(new Set());
   const audioRef = useRef(null);
   const alarmTimeoutRef = useRef(null);
   const { user } = useContext(UserContext);
@@ -41,14 +40,6 @@ export function useAlarmLogic(alarms) {
       alarmTimeoutRef.current = null;
     }
 
-    if (activeAlarm?._id) {
-      setRingingAlarm((prev) => {
-        const updated = new Set(prev);
-        updated.delete(activeAlarm._id);
-        return updated;
-      });
-    }
-
     setActiveAlarm(null);
   };
 
@@ -56,7 +47,7 @@ export function useAlarmLogic(alarms) {
     const snoozeDelay = SNOOZE_AMT * 60 * 1000;
     const alarmToSnooze = activeAlarm;
 
-    stopAlarm(); //don't clear out snoozeMap when we are just snoozing an alarm
+    stopAlarm();
 
     const snoozeUntil = new Date(Date.now() + snoozeDelay);
     setSnoozedUntilMap((prev) => {
@@ -82,21 +73,13 @@ export function useAlarmLogic(alarms) {
       const currentStr = now.toTimeString().split(" ")[0].slice(0, 8);
 
       alarms?.forEach((alarm) => {
-        const isRinging = ringingAlarm.has(alarm._id);
         const snoozedUntil = snoozedUntilMap.get(alarm._id);
-        const isSnoozed = snoozedUntil && snoozedUntil > now;
         const isSnoozeMatch =
           snoozedUntil &&
           snoozedUntil.toTimeString().split(" ")[0].slice(0, 8) === currentStr;
-
-        if (
-          alarm.active &&
-          !isRinging &&
-          (alarm.time === currentStr || isSnoozeMatch) &&
-          !isSnoozed
-        ) {
+        if (alarm.active && (alarm.time === currentStr || isSnoozeMatch)) {
+          if (activeAlarm) stopAlarm();
           setActiveAlarm(alarm);
-          setRingingAlarm((prev) => new Set(prev).add(alarm._id));
           playAlarmSound(alarm);
         }
         if (isSnoozeMatch) cancelSnooze(alarm._id);
@@ -121,8 +104,7 @@ export function useAlarmLogic(alarms) {
         audioRef.current = null;
       }
     };
-    //clean up logic
-  }, [alarms, snoozedUntilMap, ringingAlarm, user]);
+  }, [alarms, snoozedUntilMap, user]);
 
   return {
     currentTime,
