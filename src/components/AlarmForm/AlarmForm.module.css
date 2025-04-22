@@ -61,6 +61,24 @@
   font-weight: bold;
 }
 
+.snooze {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.snoozeInput {
+  width: 40%;
+}
+
+.snoozeInput:disabled {
+  cursor: not-allowed;
+  color: darkgray;
+}
+
 .button {
   padding: 0.8rem;
   font-size: 1rem;

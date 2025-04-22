@@ -13,6 +13,7 @@ const AlarmForm = ({ alarms, handleAddAlarm, handleUpdateAlarm }) => {
     time: "",
     tone: "",
     snoozeOn: false,
+    snoozeTime: 1,
     active: true,
   });
 
@@ -65,6 +66,7 @@ const AlarmForm = ({ alarms, handleAddAlarm, handleUpdateAlarm }) => {
         time: "",
         tone: "",
         snoozeOn: false,
+        snoozeTime: 1,
         active: true,
       });
   }, [alarmId, alarms]);
@@ -128,6 +130,20 @@ const AlarmForm = ({ alarms, handleAddAlarm, handleUpdateAlarm }) => {
               />
               Off
             </label>
+          </div>
+          <div className={styles.snooze}>
+            <label htmlFor="snoozeTime">Snooze Minutes</label>
+            <input
+              className={styles.snoozeInput}
+              type="number"
+              id="snoozeTime"
+              name="snoozeTime"
+              value={formData.snoozeTime}
+              min="1"
+              max="15"
+              onChange={handleChange}
+              disabled={!formData.snoozeOn}
+            />
           </div>
           {alarmId && (
             <div className={styles.radioGroup}>

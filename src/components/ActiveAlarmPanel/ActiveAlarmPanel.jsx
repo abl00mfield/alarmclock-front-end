@@ -1,11 +1,6 @@
 import styles from "./ActiveAlarmPanel.module.css";
 
-const ActiveAlarmPanel = ({
-  alarm,
-  handleStop,
-  handleSnooze,
-  snoozeMinutes,
-}) => {
+const ActiveAlarmPanel = ({ alarm, handleStop, handleSnooze }) => {
   return (
     <div className={styles.activeAlarm}>
       <img src="/images/bell.gif" alt="ringing bell" width={140} height={140} />
@@ -15,9 +10,12 @@ const ActiveAlarmPanel = ({
           Stop Alarm
         </button>
         {alarm.snoozeOn && (
-          <button onClick={handleSnooze} className={styles.snoozeButton}>
-            Snooze {snoozeMinutes}
-            {snoozeMinutes === 1 ? " minute" : " minutes"}
+          <button
+            onClick={() => handleSnooze(alarm.snoozeTime)}
+            className={styles.snoozeButton}
+          >
+            Snooze {alarm.snoozeTime}
+            {alarm.snoozeTime === 1 ? " minute" : " minutes"}
           </button>
         )}
       </div>

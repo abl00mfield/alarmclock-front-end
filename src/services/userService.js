@@ -8,8 +8,8 @@ const index = async () => {
 
     const data = await res.json();
 
-    if (data.error) {
-      throw new Error(data.error);
+    if (data.err) {
+      throw new Error(data.err);
     }
 
     return data;

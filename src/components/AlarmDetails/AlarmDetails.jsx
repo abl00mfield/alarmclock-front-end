@@ -56,7 +56,13 @@ const AlarmDetails = ({ alarms, handleDeleteAlarm }) => {
         <h2 className={styles.info}>Name: {alarm.name}</h2>
         <h2 className={styles.info}>Tone: {alarm.tone?.toneName}</h2>
         {alarm.snoozeOn ? (
-          <h2 className={styles.status}>Snooze is on</h2>
+          <>
+            <h2 className={styles.status}>Snooze is on</h2>
+            <h2 className={styles.status}>
+              Snooze Time: {alarm.snoozeTime}
+              {alarm.snoozeTime === 1 ? " minute" : " minutes"}
+            </h2>
+          </>
         ) : (
           <h2 className={styles.status}>Snooze is off</h2>
         )}

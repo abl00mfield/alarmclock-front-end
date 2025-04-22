@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
-const SNOOZE_AMT = 2;
+const SNOOZE_AMT = 5;
 const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}`;
 
 export function useAlarmLogic(alarms) {
@@ -43,8 +43,9 @@ export function useAlarmLogic(alarms) {
     setActiveAlarm(null);
   };
 
-  const snoozeAlarm = () => {
-    const snoozeDelay = SNOOZE_AMT * 60 * 1000;
+  const snoozeAlarm = (snoozeMinutes) => {
+    const snoozeAmt = snoozeMinutes || SNOOZE_AMT;
+    const snoozeDelay = snoozeAmt * 60 * 1000;
     const alarmToSnooze = activeAlarm;
 
     stopAlarm();

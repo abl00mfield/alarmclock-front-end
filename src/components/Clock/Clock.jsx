@@ -16,7 +16,6 @@ const Clock = ({ alarms }) => {
     snoozeAlarm,
     cancelSnooze,
     snoozedUntilMap,
-    SNOOZE_AMT,
   } = useAlarmLogic(alarms);
 
   return (
@@ -28,7 +27,6 @@ const Clock = ({ alarms }) => {
           alarm={activeAlarm}
           handleStop={stopAlarm}
           handleSnooze={snoozeAlarm}
-          snoozeMinutes={SNOOZE_AMT}
         />
       )}
 

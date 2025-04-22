@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { Routes, Route, useNavigate } from "react-router";
+import { UserContext } from "./contexts/UserContext";
 
 import NavBar from "./components/NavBar/NavBar";
 import Clock from "./components/Clock/Clock";
@@ -7,7 +8,6 @@ import SignUpForm from "./components/SignUpForm/SignUpForm";
 import SignInForm from "./components/SignInForm/SignInForm";
 import Landing from "./components/Landing/Landing";
 import Dashboard from "./components/Dashboard/Dashboard";
-import { UserContext } from "./contexts/UserContext";
 import AlarmForm from "./components/AlarmForm/AlarmForm";
 import AlarmList from "./components/AlarmList/AlarmList";
 import AlarmDetails from "./components/AlarmDetails/AlarmDetails";
@@ -22,7 +22,7 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    //lets fetch all the current user's alarms and pass down to the clock component so it has access to them
+    //fetch all user's alarms
     const fetchAlarms = async () => {
       setLoading(true);
       setMessage("Getting alarms ...");
