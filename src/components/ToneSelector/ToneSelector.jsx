@@ -62,7 +62,7 @@ const ToneSelector = ({ selectedTone, handleChange, audioRef }) => {
       timeoutRef.current = setTimeout(() => {
         //timeoutRef points to a setTimeout object
         audioPreview.pause(); //this code will run (pause the audio)
-        audioPreview.currentTime = 0; //after a set amount of time
+        audioPreview.currentTime = 0;
         audioRef.current = null;
       }, 4000); //in this case,it's 4seconds
     }
