@@ -13,7 +13,7 @@ const AlarmForm = ({ alarms, handleAddAlarm, handleUpdateAlarm }) => {
     time: "",
     tone: "",
     snoozeOn: false,
-    snoozeTime: 1,
+    snoozeTime: 9,
     active: true,
   });
 
@@ -66,7 +66,7 @@ const AlarmForm = ({ alarms, handleAddAlarm, handleUpdateAlarm }) => {
         time: "",
         tone: "",
         snoozeOn: false,
-        snoozeTime: 1,
+        snoozeTime: 9,
         active: true,
       });
   }, [alarmId, alarms]);
