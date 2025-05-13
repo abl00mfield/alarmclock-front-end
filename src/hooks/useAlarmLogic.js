@@ -7,9 +7,66 @@ export function useAlarmLogic(alarms) {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [activeAlarm, setActiveAlarm] = useState(null);
   const [snoozedUntilMap, setSnoozedUntilMap] = useState(new Map());
-  const audioRef = useRef(null);
-  const alarmTimeoutRef = useRef(null);
   const { user } = useContext(UserContext);
+
+  const scheduledAlarms = useRef(new Map()); //alarmId => tiemoutId
+  const snoozedTimeouts = useRef(new Map()); //alarmId => timeoutId
+  const audioRef = useRef(null);
+  const alarmAutoStopTimeoutRef = useRef(null);
+
+  useEffect(() => {
+    // update current time every second
+    const intervalId = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+
+    //schedule all alarms when component mounts or alarms change
+    alarms?.forEach((alarm) => {
+      scheduleAlarm(alarm);
+    });
+
+    return () => {
+      const existingIds = new Set(alarms.map((alarm) => alarm._id));
+
+      //clear all scheduled timeouts
+      for (const timeoutId of scheduledAlarms.current.values()) {
+        clearTimeout(timeoutId);
+      }
+      for (const [alarmId, timeoutId] of snoozedTimeouts.current.entries()) {
+        if (!existingIds.has(alarmId)) {
+          clearTimeout(timeoutId);
+          snoozedTimeouts.current.delete(alarmId);
+        }
+      }
+
+      scheduledAlarms.current.clear();
+
+      stopAlarm();
+    };
+  }, [alarms, user]);
+
+  const scheduleAlarm = (alarm) => {
+    if (!alarm.active) return;
+
+    const [h, m, s] = alarm.time.split(":");
+    const target = new Date();
+    target.setHours(h, m, s || "00", 0);
+
+    const now = new Date();
+    const delay = target - now;
+
+    if (delay > 0) {
+      const timeoutId = setTimeout(() => {
+        triggerAlarm(alarm);
+      }, delay);
+      scheduledAlarms.current.set(alarm._id, timeoutId);
+    }
+  };
+
+  const triggerAlarm = async (alarm) => {
+    setActiveAlarm(alarm);
+    await playAlarmSound(alarm);
+  };
 
   const playAlarmSound = async (alarm) => {
     if (!alarm.tone?.fileUrl) return;
@@ -20,7 +77,7 @@ export function useAlarmLogic(alarms) {
       await audio.play();
       audioRef.current = audio;
 
-      alarmTimeoutRef.current = setTimeout(() => {
+      alarmAutoStopTimeoutRef.current = setTimeout(() => {
         stopAlarm();
       }, 5 * 60 * 1000); // Auto stop after 5 minutes
     } catch (error) {
@@ -35,9 +92,10 @@ export function useAlarmLogic(alarms) {
       audioRef.current.loop = false;
       audioRef.current = null;
     }
-    if (alarmTimeoutRef.current) {
-      clearTimeout(alarmTimeoutRef.current);
-      alarmTimeoutRef.current = null;
+
+    if (alarmAutoStopTimeoutRef.current) {
+      clearTimeout(alarmAutoStopTimeoutRef.current);
+      alarmAutoStopTimeoutRef.current = null;
     }
 
     setActiveAlarm(null);
@@ -45,67 +103,47 @@ export function useAlarmLogic(alarms) {
 
   const snoozeAlarm = (snoozeMinutes) => {
     const snoozeAmt = snoozeMinutes || SNOOZE_AMT;
-    const snoozeDelay = snoozeAmt * 60 * 1000;
-    const alarmToSnooze = activeAlarm;
+
+    const alarm = activeAlarm;
+    if (!alarm) return;
 
     stopAlarm();
 
-    const snoozeUntil = new Date(Date.now() + snoozeDelay);
+    const snoozeUntil = new Date(Date.now() + snoozeAmt * 60 * 1000);
+
+    const timeoutId = setTimeout(() => {
+      triggerAlarm(alarm);
+      snoozedTimeouts.current.delete(alarm._id);
+
+      setSnoozedUntilMap((prev) => {
+        const updated = new Map(prev);
+        updated.delete(alarm._id);
+        return updated;
+      });
+    }, snoozeUntil - new Date());
+
+    snoozedTimeouts.current.set(alarm._id, timeoutId);
+
     setSnoozedUntilMap((prev) => {
       const updated = new Map(prev);
-      updated.set(alarmToSnooze._id, snoozeUntil);
+      updated.set(alarm._id, snoozeUntil);
       return updated;
     });
   };
 
   const cancelSnooze = (alarmId) => {
+    const timeoutId = snoozedTimeouts.current.get(alarmId);
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+      snoozedTimeouts.current.delete(alarmId);
+    }
+
     setSnoozedUntilMap((prev) => {
       const updated = new Map(prev);
       updated.delete(alarmId);
       return updated;
     });
   };
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      const now = new Date();
-      setCurrentTime(now);
-
-      const currentStr = now.toTimeString().split(" ")[0].slice(0, 8);
-
-      alarms?.forEach((alarm) => {
-        const snoozedUntil = snoozedUntilMap.get(alarm._id);
-        const isSnoozeMatch =
-          snoozedUntil &&
-          snoozedUntil.toTimeString().split(" ")[0].slice(0, 8) === currentStr;
-        if (alarm.active && (alarm.time === currentStr || isSnoozeMatch)) {
-          if (activeAlarm) stopAlarm();
-          setActiveAlarm(alarm);
-          playAlarmSound(alarm);
-        }
-        if (isSnoozeMatch) cancelSnooze(alarm._id);
-      });
-    }, 1000);
-
-    if (alarms.length === 0 || !user) {
-      stopAlarm();
-    }
-
-    return () => {
-      clearInterval(timer);
-
-      if (alarmTimeoutRef.current) {
-        clearTimeout(alarmTimeoutRef.current);
-        alarmTimeoutRef.current = null;
-      }
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current.currentTime = 0;
-        audioRef.current.loop = false;
-        audioRef.current = null;
-      }
-    };
-  }, [alarms, snoozedUntilMap, user]);
 
   return {
     currentTime,
@@ -114,7 +152,6 @@ export function useAlarmLogic(alarms) {
     snoozeAlarm,
     cancelSnooze,
     snoozedUntilMap,
-    SNOOZE_AMT,
   };
 }
 
